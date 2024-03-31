@@ -1,79 +1,51 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native InfiniteFeed
 
-# Getting Started
+## Overview
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+InfiniteFeed is a React Native application designed to emulate the engaging experience of social media feeds. It features an endlessly scrolling list of posts, where users can interact through likes and comments. The application is built using MobX for efficient state management, ensuring a reactive and seamless user experience. It showcases custom hooks for scroll management and dynamic data loading, demonstrating best practices in modern app development.
 
-## Step 1: Start the Metro Server
+## Getting Started
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Prerequisites
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Node.js installed on your system.
+React Native environment setup, including Node, Watchman, and either Xcode or Android Studio.
 
-```bash
-# using npm
-npm start
+## Setup
 
-# OR using Yarn
-yarn start
-```
+1. **Clone the repository**:
 
-## Step 2: Start your Application
+git clone https://github.com/adisherman/InfiniteFeed.git
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+2. **Navigate to the project directory:**:
 
-### For Android
+cd InfiniteFeed
 
-```bash
-# using npm
-npm run android
+3. **Install dependencies**:
 
-# OR using Yarn
-yarn android
-```
+npm install
 
-### For iOS
+4. **Run the app**:
 
-```bash
-# using npm
-npm run ios
+- iOS:
+  ```
+  npx react-native run-ios
+  ```
+- Android:
+  ```
+  npx react-native run-android
+  ```
 
-# OR using Yarn
-yarn ios
-```
+## Key Features
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+- **Infinite Scrolling**: Implements a smooth, infinite scrolling experience, loading more posts as the user scrolls, simulating a never-ending feed.
+- **nteractive Post Elements**: Allows users to engage with posts by liking and commenting, fostering an interactive community feel
+- **Efficient State Management**: Utilizes MobX for state management, organizing the app's state in a scalable and maintainable manner, enabling automatic updates when the state changes.
+- **Custom Hooks and Components**: Features custom React hooks, such as useInfiniteScroll, to encapsulate and manage scroll-related logic, along with modular React components for an organized codebase.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Architecture
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- **PostsStore**: Manages posts, loading state and data fetching. i've handled the fetch it self in the store, becuase ait seems to be best practice in the context of state management and separation of concerns.
+- **PostsModal**: Represents the data structure and functionality of a single post, managing individual post attributes, likes, and comments.
+- **useInfiniteScroll**: Custom hook for scroll handling and post fetching. i've implemented the scroll handeling in the hook to controll the refresh event instead of the use of the prop "onRefresh" beacause it demends the loading state which will require unnecessary re-renders.
+- **Post**: A reusable component that renders individual posts. It handles user interactions such as likes and comments, providing a dynamic and responsive user experience.
